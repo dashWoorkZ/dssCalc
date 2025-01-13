@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+      img {
+            max-width: 100%;
+            display: inline block;
+      }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100svh;
+            width: 100svw;
+        }
+        
+        #calcUtility {
+              display: grid;
+              grid-template-columns: autofit;
+              position: relative;
+        }
+        
+       
+        #calcUtility span {
+              position: absolute;
+              top: 0.25rem;
+              left: 15%;
+              padding-block-start: 1rem;
+              text-align: center;
+              color: gold;
+              font-weight: 700;
+              letter-spacing: 0.2rem;
+              text-shadow: 0 0 0.15rem rebeccapurple;
+        }
+
+        #calculator {
+            font-family: Arial, sans-serif;
+            background-color: aquamarine;
+            border-radius: 1rem;
+            max-width: 31.25rem;
+            overflow: hidden;
+            border: 0.5rem inset gold;
+            outline: 0.5rem ridge purple;
+        }
+
+        #display {
+            width: 100%;
+            padding-inline: 1.25rem;
+            padding-block: 1rem;
+            font-size: 5rem;
+            text-align: left;
+            font-weight: 700;
+            border: 0.2rem inset gold;
+            border-radius: 1rem 1rem 0 0;
+            outline: 0.2rem ridge purple;
+            background-color: bisque;
+            color: dodgerblue;
+            text-shadow: 0 0.1rem 0.2rem rebeccapurple;
+        }
+
+        #keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            padding-inline: 1.5rem;
+            padding-block: 1.5rem;
+            max-width: 100%;
+            border-radius: 0 0 1rem 1rem;
+        }
+
+        button {
+            max-width: 6.25rem;
+            max-height: 6.25rem;
+            border-radius: .5rem;
+            border: 0.2rem groove gold;
+            outline: 0.2rem ridge purple;
+            outline-offset: 0.1rem;
+            background-color: hsla(210, 68%, 70%, 0.3);
+            padding-inline: 0.25rem;
+            padding-block: 0.25rem;
+            text-align: center;
+            vertical-align: middle;
+            font-size: clamp(2rem, 2.5rem, 3rem);
+            font-weight: 700;
+            color: gold;
+            text-shadow: 0 0.1rem 0.2rem purple;
+            cursor: pointer;
+            transition: all 500ms ease-in-out;
+        }
+
+        button:hover {
+            border: 0.2rem groove purple;
+            outline: 0.2rem ridge gold;
+            outline-offset: 0.1rem;
+            background-color: hsla(290, 69%, 70%, 0.3);
+            color: purple;
+            text-shadow: 0 0.1rem 0.2rem gold;
+        }
+
+        .clear {
+            max-width: 100%;
+            padding-inline: 0.5rem;
+            grid-column: span 3;
+        }
+
+    </style>
+    <title>Calculator</title>
+</head>
+<body>
+    <!-- Courtesy of Bro Code https://www.youtube.com/watch?v=I5kj-YsmWjM -->
+    <div id="calcUtility">
+          <span>dashWoorkZ Sovereign Society</span>
+          <section id="calculator">
+              <input id="display" readonly>
+              <div id="keys">
+                  <button onclick="appendToDisplay('+')" class="operator__btn">+</button>
+                  <button onclick="appendToDisplay('7')">7</button>
+                  <button onclick="appendToDisplay('8')">8</button>
+                  <button onclick="appendToDisplay('9')">9</button>
+                  <button onclick="appendToDisplay('-')">-</button>
+                  <button onclick="appendToDisplay('4')">4</button>
+                  <button onclick="appendToDisplay('5')">5</button>
+                  <button onclick="appendToDisplay('6')">6</button>
+                  <button onclick="appendToDisplay('*')">*</button>
+                  <button onclick="appendToDisplay('1')">1</button>
+                  <button onclick="appendToDisplay('2')">2</button>
+                  <button onclick="appendToDisplay('3')">3</button>
+                  <button onclick="appendToDisplay('/')">/</button>
+                  <button onclick="appendToDisplay('0')">0</button>
+                  <button onclick="appendToDisplay('.')">.</button>
+                  <button onclick="calculate('=')">=</button>
+                  <button onclick="appendToDisplay('%')">%</button>
+                  <button onclick="clearDisplay('C')" class="clear">Clear</button>
+              </div>
+          </section>
+      </div>
+    <script>
+        // Calculator Program
+
+        const display = document.getElementById('display');
+
+        function appendToDisplay (input) {
+            display.value += input;
+        }
+
+        function clearDisplay () {
+            display.value = '';
+        }
+
+        function calculate () {
+            try {
+                display.value = eval(display.value);
+            }
+            catch (error) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
